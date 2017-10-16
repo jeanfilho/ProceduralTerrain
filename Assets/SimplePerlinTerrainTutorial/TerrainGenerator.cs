@@ -18,7 +18,7 @@ public class TerrainGenerator : MonoBehaviour
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
     }
 
-    TerrainData GenerateTerrain(TerrainData terrainData)
+    UnityEngine.TerrainData GenerateTerrain(UnityEngine.TerrainData terrainData)
     {
         terrainData.heightmapResolution = width + 1; 
         terrainData.size = new Vector3(width, depth, height);
