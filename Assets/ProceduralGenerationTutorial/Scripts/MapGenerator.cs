@@ -19,13 +19,23 @@ public class MapGenerator : MonoBehaviour
     public TextureData textureData;
 
     public Material terrainMaterial;
+    [Range(0, MeshGenerator.numSupportedChunkSizes - 1)]
+    public int chunkSizeIndex;
+    [Range(0,MeshGenerator.numSupportedFlatshadedChunkSizes - 1)]
+    public int flatshadedChunkSizeIndex;
 
-    [Range(0, 6)] public int editorPreviewLOD;
+    [Range(0, MeshGenerator.numSupportedLODs - 1)] public int editorPreviewLOD;
     public bool autoUpdate;
     private float[,] falloffMap;
 
     private Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
     private Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
+
+    void Awake()
+    {
+        textureData.ApplyToMaterial(terrainMaterial);
+        textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
+    }
 
     void OnValuesUpdated()
     {
@@ -42,12 +52,13 @@ public class MapGenerator : MonoBehaviour
     {
         get
         {
-            return terrainData.useFlatShading ? 95 : 239;
+            return terrainData.useFlatShading ? MeshGenerator.supportedFlatshadedChunkSizes[flatshadedChunkSizeIndex] - 1 : MeshGenerator.supportedChunkSizes[chunkSizeIndex] - 1;
         }
     }
 
     public void DrawMapInEditor()
     {
+        textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
         MapData mapData = GenerateMapData(Vector2.zero);
         MapDisplay display = FindObjectOfType<MapDisplay>();
         switch (drawMode)
@@ -141,7 +152,6 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-        textureData.UpdateMeshHeights(terrainMaterial, terrainData.minHeight, terrainData.maxHeight);
 
         return new MapData(noiseMap);
     }

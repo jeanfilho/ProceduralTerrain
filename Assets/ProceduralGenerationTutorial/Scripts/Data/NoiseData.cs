@@ -15,10 +15,12 @@ public class NoiseData : UpdatableData
     public int seed;
     public Vector2 offset;
 
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         lacunarity = Mathf.Max(1, lacunarity);
         octaves = Mathf.Max(0, octaves);
         base.OnValidate();
     }
+#endif
 }
