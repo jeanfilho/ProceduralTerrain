@@ -8,14 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 554611769d52c3f4c856776b08c8bae1, type: 3}
-  m_Name: DefaultNoise
+  m_Script: {fileID: 11500000, guid: 9985ccba9a76f164fa1eea06e8ba2e96, type: 3}
+  m_Name: NewHeightMapSettings
   m_EditorClassIdentifier: 
   autoUpdate: 1
-  normalizeMode: 0
-  noiseScale: 40
-  octaves: 6
-  persistance: 0.486
-  lacunarity: 2
-  seed: 0
-  offset: {x: 0, y: 0}
+  meshScale: 1
+  useFlatShading: 0
+  chunkSizeIndex: 3
+  flatshadedChunkSizeIndex: 0
