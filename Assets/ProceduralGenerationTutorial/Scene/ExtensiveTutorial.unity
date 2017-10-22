@@ -290,13 +290,13 @@ MonoBehaviour:
   textureRender: {fileID: 2054036083}
   meshFilter: {fileID: 232648471}
   meshRenderer: {fileID: 232648470}
-  drawMode: 1
-  meshSettings: {fileID: 11400000, guid: b55597e7324c19343aa1dbfce5fa01c9, type: 2}
-  heightMapSettings: {fileID: 11400000, guid: 29c11988c46c0de45a6d9bc4ea8933dc, type: 2}
-  textureData: {fileID: 11400000, guid: 38c1c60dd157c1f44a117174b7a1a127, type: 2}
-  terrainMaterial: {fileID: 2100000, guid: 718dcdb9e80288c429517ad8711820dd, type: 2}
+  drawMode: 0
+  meshSettings: {fileID: 0}
+  heightMapSettings: {fileID: 0}
+  textureData: {fileID: 0}
+  terrainMaterial: {fileID: 0}
   editorPreviewLOD: 0
-  autoUpdate: 1
+  autoUpdate: 0
 --- !u!4 &379524192
 Transform:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &974057848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,10 +776,10 @@ MonoBehaviour:
     visibleDstThreshold: 200
   - lod: 1
     visibleDstThreshold: 400
-  meshSettings: {fileID: 11400000, guid: b55597e7324c19343aa1dbfce5fa01c9, type: 2}
-  heightMapSettings: {fileID: 11400000, guid: 29c11988c46c0de45a6d9bc4ea8933dc, type: 2}
+  meshSettings: {fileID: 11400000, guid: 29c11988c46c0de45a6d9bc4ea8933dc, type: 2}
+  heightMapSettings: {fileID: 11400000, guid: b55597e7324c19343aa1dbfce5fa01c9, type: 2}
   textureSettings: {fileID: 11400000, guid: 38c1c60dd157c1f44a117174b7a1a127, type: 2}
-  viewer: {fileID: 1373117958}
+  viewer: {fileID: 974057851}
   mapMaterial: {fileID: 2100000, guid: 718dcdb9e80288c429517ad8711820dd, type: 2}
 --- !u!114 &1944639009
 MonoBehaviour:

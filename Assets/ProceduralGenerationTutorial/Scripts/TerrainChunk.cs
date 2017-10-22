@@ -5,7 +5,7 @@ public class TerrainChunk : MonoBehaviour
 {
     private const float ColliderGenerationDstThreshold = 5f;
     public event Action<TerrainChunk, bool> onVisibilityChange; 
-    public Vector2 coordinate;
+    public Vector2 coord;
 
     private GameObject meshObject;
     private Vector2 sampleCenter;
@@ -27,28 +27,28 @@ public class TerrainChunk : MonoBehaviour
 
     private HeightMapSettings heightMapSettings;
     private MeshSettings meshSettings;
-
     private Transform viewer;
 
     public TerrainChunk(Vector2 coord, HeightMapSettings heightMapSettings, MeshSettings meshSettings, LODInfo[] detailLevels, int colliderLODIndex, Transform parent, Transform viewer,
         Material material)
     {
-        coordinate = coord;
-        this.viewer = viewer;
-        this.heightMapSettings = heightMapSettings;
-        this.meshSettings = meshSettings;
+        this.coord = coord;
         this.detailLevels = detailLevels;
         this.colliderLODIndex = colliderLODIndex;
+        this.heightMapSettings = heightMapSettings;
+        this.meshSettings = meshSettings;
+        this.viewer = viewer;
+
         sampleCenter = coord * meshSettings.meshWorldSize / meshSettings.meshScale;
         Vector2 position = coord * meshSettings.meshWorldSize;
-        bounds = new Bounds(sampleCenter, Vector2.one * meshSettings.meshWorldSize);
+        bounds = new Bounds(position, Vector2.one * meshSettings.meshWorldSize);
 
         meshObject = new GameObject("Terrain Chunk");
         meshRenderer = meshObject.AddComponent<MeshRenderer>();
         meshFilter = meshObject.AddComponent<MeshFilter>();
         meshCollider = meshObject.AddComponent<MeshCollider>();
-
         meshRenderer.material = material;
+
         meshObject.transform.position = new Vector3(position.x, 0, position.y);
         meshObject.transform.parent = parent;
         SetVisible(false);
@@ -90,11 +90,6 @@ public class TerrainChunk : MonoBehaviour
         }
     }
 
-    void OnMeshDataReceived(MeshData meshData)
-    {
-        meshFilter.mesh = meshData.CreateMesh();
-    }
-
     public void UpdateTerrainChunk()
     {
 
@@ -108,6 +103,7 @@ public class TerrainChunk : MonoBehaviour
             if (visible)
             {
                 int lodIndex = 0;
+
                 for (int i = 0; i < detailLevels.Length - 1; i++)
                 {
                     if (viewerDstFromNearestEdge > detailLevels[i].visibleDstThreshold)
@@ -190,6 +186,7 @@ class LODMesh
     {
         mesh = ((MeshData)meshDataObject).CreateMesh();
         hasMesh = true;
+
         updateCallback();
     }
 

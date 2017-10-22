@@ -30,11 +30,12 @@ public class TerrainGenerator : MonoBehaviour
 
     void Start()
     {
+        textureSettings.ApplyToMaterial(mapMaterial);
+        textureSettings.UpdateMeshHeights(mapMaterial, heightMapSettings.minHeight, heightMapSettings.maxHeight);
+
         float maxViewDst = detailLevels[detailLevels.Length - 1].visibleDstThreshold;
         meshWorldSize = meshSettings.meshWorldSize;
         chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / meshWorldSize);
-        textureSettings.ApplyToMaterial(mapMaterial);
-        textureSettings.UpdateMeshHeights(mapMaterial, heightMapSettings.minHeight, heightMapSettings.maxHeight);
 
         UpdateVisibleChunks();
     }
@@ -63,11 +64,9 @@ public class TerrainGenerator : MonoBehaviour
         HashSet<Vector2> alreadyUpdatedChunkCoords = new HashSet<Vector2>();
         for (int i = visibleTerrainChunks.Count - 1; i >= 0; i--)
         {
-            alreadyUpdatedChunkCoords.Add(visibleTerrainChunks[i].coordinate);
+            alreadyUpdatedChunkCoords.Add(visibleTerrainChunks[i].coord);
             visibleTerrainChunks[i].UpdateTerrainChunk();
         }
-
-        visibleTerrainChunks.Clear();
 
         int currentChunkCoordX = Mathf.RoundToInt(viewerPosition.x / meshWorldSize);
         int currentChunkCoordY = Mathf.RoundToInt(viewerPosition.y / meshWorldSize);
