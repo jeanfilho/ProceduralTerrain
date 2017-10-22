@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class TerrainGenerator : MonoBehaviour
+public class OldTerrainGenerator : MonoBehaviour
 {
 
     public int depth = 20;
