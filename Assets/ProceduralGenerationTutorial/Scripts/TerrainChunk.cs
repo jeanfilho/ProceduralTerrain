@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-public class TerrainChunk : MonoBehaviour
+public class TerrainChunk
 {
     private const float ColliderGenerationDstThreshold = 5f;
-    public event Action<TerrainChunk, bool> onVisibilityChange; 
+    public event Action<TerrainChunk, bool> onVisibilityChanged; 
     public Vector2 coord;
 
     private GameObject meshObject;
@@ -128,8 +128,8 @@ public class TerrainChunk : MonoBehaviour
             if (wasVisible != visible)
             {
                 SetVisible(visible);
-                if (onVisibilityChange != null)
-                    onVisibilityChange(this, visible);
+                if (onVisibilityChanged != null)
+                    onVisibilityChanged(this, visible);
             }
         }
     }

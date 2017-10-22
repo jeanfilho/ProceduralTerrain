@@ -86,7 +86,7 @@ public class TerrainGenerator : MonoBehaviour
                     {
                         TerrainChunk newChunk = new TerrainChunk(viewedChunkCoord, heightMapSettings, meshSettings, detailLevels, colliderLODIndex, transform, viewer, mapMaterial);
                         terrainChunkDictionary.Add(viewedChunkCoord, newChunk);
-                        newChunk.onVisibilityChange += OnVisibilityChanged;
+                        newChunk.onVisibilityChanged += OnVisibilityChanged;
                         newChunk.Load();
                     }
                 }
